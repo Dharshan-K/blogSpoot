@@ -1,12 +1,9 @@
 const express = require("express")
 
 const router = express.Router();
-const {getBlog} = require("../controller/blogFunctions.js")
+const {getBlog,getUserBlog} = require("../controller/blogFunctions.js")
 
-// router.use((req, res) => {
-//   console.log('Time: ', Date.now())  
-// })
-
-router.route("/id").get(getBlog)
+router.route("/:user").get(getBlog)
+router.route("/:user/:id").get(getUserBlog)
 
 module.exports = router;

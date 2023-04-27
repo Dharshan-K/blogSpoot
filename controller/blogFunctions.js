@@ -4,6 +4,15 @@ const getBlog = async (req,res)=>{
 	res.json({message:"this is your blog router"})
 }
 
+const getUserBlog = async(req,res)=>{
+	console.log(req.params.user, req.params.id)
+	res.status(200)
+	res.json({
+		user:req.params.user,
+		id:req.params.ids
+	})
+}
 
 
-module.exports = {getBlog};
+
+module.exports = {getBlog,getUserBlog};
