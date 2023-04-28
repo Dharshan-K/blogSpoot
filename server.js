@@ -10,12 +10,6 @@ connectDB()
 
 app.use("/blog",require("./routers/blogRoutes"))
 
-app.get('/hi',(req,res)=>{
-	console.log("hello world")
-	res.status(201)
-	res.json({message : "hello world", request: "hi"})	
-})
-
 
 
 app.listen(3000, ()=>console.log("liseting to port 3000"))
