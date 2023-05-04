@@ -4,7 +4,7 @@ const blogSchema = mongoose.Schema({
 	title:{type:String, required:[true, "your blog must have a title"]},
 	content: {type:String},
 	author:{type:String},
-	id:{type:Number},
+	id:{type:String},
 	
 },{timestamps:true},)
 

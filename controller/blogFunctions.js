@@ -1,7 +1,13 @@
 const User = require("../models/userModel.js")
 const Blog = require("../models/blogModel.js")
 
-let articleCount = 0;
+function createUniqueId() {
+  const timestamp = Date.now().toString(36); // convert timestamp to base-36 string
+  const random = Math.random().toString(36).substr(2, 5); // generate 5 random alphanumeric characters
+  const uniqueId = `${timestamp}-${random}`; // concatenate timestamp and random string
+  return uniqueId;
+}
+
 
 //api Route: http://localhost:3000/blog/
 //get all the blogs
@@ -34,7 +40,7 @@ const getUserBlog = async(req,res)=>{
 	})
 }
 
-//api route: http://localhost:3000/blog/Dharshan/posts
+//api route: http://localhost:3000/blog/posts
 //post request to create the blog
 //tested
 const postBlog = async(req,res)=>{
@@ -43,8 +49,7 @@ const postBlog = async(req,res)=>{
 		res.json({message:"some fields are missing"})
 		// throw new Error("some fields are missing")
 	}else{
-		const createBlog = await Blog.create({title: req.body.title, content: req.body.content, author: req.body.author, id:articleCount})
-		articleCount+=1;
+		const createBlog = await Blog.create({title: req.body.title, content: req.body.content, author: req.body.author, id:createUniqueId()})
 		res.status(200)
 		res.json({message:"posted the blog"})
 	}	
@@ -52,21 +57,20 @@ const postBlog = async(req,res)=>{
 
 //api Route: http://localhost:3000/blog/Dharshan/12
 //delete request to delete the blog
+//tested
 const deleteBlog = async(req,res)=>{
 	const id = req.params.id;
-	const blog = await Blog.findById({author: req.params.user})
+	const blog = await Blog.findOne({id:req.params.id})
 	console.log(blog)
-	res.status(200)
+	// res.status(200).json({message:"posts found"})
 	if(!blog){
 		res.status(401).json({message:"blog post not found"})
 	}
 	else{
-		await blog.deleteOne({id:req.params.id});
+		await blog.deleteOne()
 		res.status(200).json({message:"blogpost succesfully removed"})
 	}
-
 }
-
 
 
 module.exports = {getAllBlog,getBlog,getUserBlog,postBlog,deleteBlog};
