@@ -1,6 +1,7 @@
 const User = require("../models/userModel.js")
 const Blog = require("../models/blogModel.js")
 
+//creates uniqueID for every entry in the database
 function createUniqueId() {
   const timestamp = Date.now().toString(36); // convert timestamp to base-36 string
   const random = Math.random().toString(36).substr(2, 5); // generate 5 random alphanumeric characters

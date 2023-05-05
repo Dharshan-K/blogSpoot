@@ -6,7 +6,7 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
-    "development": "nodemon server.js"
+    "server": "nodemon server.js"
   },
   "devDependencies": {
     "dotenv": "^16.0.3"
