@@ -1,8 +1,9 @@
 const bcrypt = require("bcryptjs")
 const User = require("../models/userModel.js")
-const jwt = require("jsonwebtoken")
+const jwt =require("jsonwebtoken")
 
-const createuser = async(req,res)=>{
+
+const createUser = async(req,res)=>{
 	const {name,email,password} = req.body;
 	if(!name||!email||!password){
 		res.status(401).json("fill all the credentials")
@@ -18,6 +19,8 @@ const createuser = async(req,res)=>{
 	const salt = await bcrypt.genSalt(10)
 	const hashedPassword = await bcrypt.hash(password,salt);
 	const user = await User.create({userName: name, email: email, password:hashedPassword})
+	console.log(generateToken(user._id));
+
 
 
 	if(user){
@@ -29,7 +32,7 @@ const createuser = async(req,res)=>{
 	}
 }
 
-const loginuser = async(req,res)=>{
+const loginUser = async(req,res)=>{
 const { email, password } = req.body;
   const user = await User.findOne({ email });
   console.log(user.id, user._id);
@@ -49,11 +52,14 @@ const { email, password } = req.body;
   res.json({ message: "login user" });
 }
 
-const getUser = asyncHandler(async (req, res) => {
+const getUser = async (req, res) => {
   const { _id, name, email } = await User.findById(req.user.id);
   res.json({ id: _id, name, email });
-});
+};
 
 const generateToken = async(id)=>{
 	return jwt.sign({ id }, process.env.JWT_TOKEN, { expiresIn: "30d" });
 }
+
+
+module.exports = {getUser,loginUser,createUser}
