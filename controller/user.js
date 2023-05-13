@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs")
 const User = require("../models/userModel.js")
 const jwt =require("jsonwebtoken")
-
+require("dotenv").config()
 
 const createUser = async(req,res)=>{
 	const {name,email,password} = req.body;
@@ -19,37 +19,35 @@ const createUser = async(req,res)=>{
 	const salt = await bcrypt.genSalt(10)
 	const hashedPassword = await bcrypt.hash(password,salt);
 	const user = await User.create({userName: name, email: email, password:hashedPassword})
-	console.log(generateToken(user._id));
-
-
-
+	
 	if(user){
 		res.status(200).json({
-			token: generateToken(user._id)
-		})
+			token: generateToken(user._id),
+			})
 	}else{
 		res.status(401).json({message:"user not created"})
 	}
 }
 
 const loginUser = async(req,res)=>{
-const { email, password } = req.body;
+	const { email, password } = req.body;
   const user = await User.findOne({ email });
-  console.log(user.id, user._id);
+  console.log(user && (await bcrypt.compare(password, user.password)))
 
   if (user && (await bcrypt.compare(password, user.password))) {
     res.json({
       _id: user.id,
-      name: user.name,
+      name: user.userName,
       email: user.email,
       token: generateToken(user._id),
+      message: "user logged in"
     });
   } else {
     res.status(400);
     throw new Error("invalid credentials");
   }
 
-  res.json({ message: "login user" });
+  // res.json({ message: "login user" });
 }
 
 const getUser = async (req, res) => {
@@ -57,7 +55,7 @@ const getUser = async (req, res) => {
   res.json({ id: _id, name, email });
 };
 
-const generateToken = async(id)=>{
+const generateToken = (id)=>{
 	return jwt.sign({ id }, process.env.JWT_TOKEN, { expiresIn: "30d" });
 }
 
