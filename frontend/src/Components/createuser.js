@@ -1,4 +1,5 @@
 import {useState} from "react";
+import axios from 'axios';
 
 export default function CreateForm(){
   const [name, setName] = useState('');
@@ -7,7 +8,7 @@ export default function CreateForm(){
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here, such as sending data to the server
+    
     console.log('Name:', name);
     console.log('Email:', email);
     console.log('Password:', password);
