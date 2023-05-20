@@ -32,27 +32,29 @@ const createUser = async(req,res)=>{
 const loginUser = async(req,res)=>{
 	const { email, password } = req.body;
   const user = await User.findOne({ email });
+  console.log(user)
+  res.json({message:"login"})
   console.log(user && (await bcrypt.compare(password, user.password)))
 
-  if (user && (await bcrypt.compare(password, user.password))) {
-    res.json({
-      _id: user.id,
-      name: user.userName,
-      email: user.email,
-      token: generateToken(user._id),
-      message: "user logged in"
-    });
-  } else {
-    res.status(400);
-    throw new Error("invalid credentials");
-  }
+  // if (user && (await bcrypt.compare(password, user.password))) {
+  //   res.json({
+  //     _id: user.id,
+  //     name: user.userName,
+  //     email: user.email,
+  //     token: generateToken(user._id),
+  //     message: "user logged in"
+  //   });
+  // } else {
+  //   res.status(400);
+  //   throw new Error("invalid credentials");
+  // }
 
   // res.json({ message: "login user" });
 }
 
 const getUser = async (req, res) => {
-  const { _id, name, email } = await User.findById(req.user.id);
-  res.json({ id: _id, name, email });
+  const {_id,userName,email} = await User.findOne({userName:req.params.user});
+  res.json({ _id: _id, name: userName, email:email});
 };
 
 const generateToken = (id)=>{

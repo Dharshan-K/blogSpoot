@@ -1,17 +1,27 @@
 import {useState} from "react";
-import axios from 'axios';
+import axios from "axios";
 
 export default function CreateForm(){
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+
+    const data = {name:name,email:email,password:password}
     
-    console.log('Name:', name);
+    // console.log('Name:', name);
     console.log('Email:', email);
     console.log('Password:', password);
+
+    axios.post("http://localhost:5000/users/createUser",data).then(response=>{
+      console.log("response", response)
+    })
+
+    console.log("hi")
+
+
 
     // Reset form fields
     setName('');
