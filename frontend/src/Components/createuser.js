@@ -19,10 +19,6 @@ export default function CreateForm(){
       console.log("response", response)
     })
 
-    console.log("hi")
-
-
-
     // Reset form fields
     setName('');
     setEmail('');

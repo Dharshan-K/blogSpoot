@@ -35,9 +35,7 @@ const getBlog = async (req,res)=>{
 const getUserBlog = async(req,res)=>{
 	const blog = await Blog.find({author: req.params.user});
 	console.log(blog)
-	res.status(200).json({
-		user:req.params.user,
-		id:req.params.id
+	res.status(200).json({blog:blog
 	})
 }
 

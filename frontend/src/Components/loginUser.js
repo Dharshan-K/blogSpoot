@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import axios from 'axios';
 
 
 export default function LoginForm(){
@@ -11,6 +11,12 @@ export default function LoginForm(){
     // Handle form submission logic here, such as sending data to the server
     console.log('Email:', email);
     console.log('Password:', password);
+
+    const data = {email:email,password:password}
+
+    axios.post("http://localhost:5000/users/login",data).then(response=>{
+      console.log("response", response)
+    })
 
     // Reset form fields
     setEmail('');
