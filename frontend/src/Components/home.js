@@ -1,20 +1,88 @@
-import {useState} from "react";
+/** @format */
+
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Blog from "./blog";
 
-export default function Home(){
-	const homePage = async()=>{
-		console.log('hi')
-		const data = {}
+export default function Home() {
+  const [data, setData] = useState([]);
 
-		axios.get("http://localhost:5000/blog/Dharshan").then(response=>{
-			const blogData = response.data;
-			for (const blog in blogData){
-				console.log(blog)
-			}
-		console.log("done")
-		})
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log("hi");
+        const response = await axios.get("http://localhost:5000/blog/");
+        console.log(response);
+        const blogData = response.data;
+        setData(blogData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-		
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      {data.map((blog) => (
+        <Blog title={blog.title} author={blog.author} content={blog.content} />
+      ))}
+    </div>
+  );
 }
-	return(<div><button onClick={homePage}>get blog</button></div>)
-}
+
+// /** @format */
+
+// import { useState, useEffect } from "react";
+// import axios from "axios";
+// import Blog from "./blog";
+
+// export default function Home() {
+//   const [data, setData] = useState();
+//   var blogData;
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         console.log("hi");
+//         const response = await axios.get("http://localhost:5000/blog/Dharshan");
+//         blogData = response.data;
+//         console.log("data", data);
+//       } catch (error) {
+//         console.log("erroe", error);
+//       }
+//     };
+
+//     fetchData();
+//     setData(blogData);
+//   }, []);
+
+//   //   useEffect(() => {
+//   //     const refresh = async () => {
+//   //       await homePage();
+//   //       setData(blogData);
+//   //     };
+//   //     refresh();
+//   //   }, []);
+
+//   //   const homePage = async () => {
+//   //     console.log("hi");
+//   //     await axios.get("http://localhost:5000/blog/Dharshan").then((response) => {
+//   //       blogData = response.data;
+//   //     });
+//   //     console.log("data", data);
+
+//   return (
+//     <div>
+//       {/* {data.map((blog, index) => {
+//         <div>
+//           <Blog title={blog[index].title} />
+//           <Blog author={blog[index].author} />
+//           <Blog content={blog[index].content} />
+//         </div>;
+//       })} */}
+//       <button>getBLog</button>
+//       {/* <div>{data[0]}</div> */}
+//     </div>
+//   );
+// }
