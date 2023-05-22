@@ -3,14 +3,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import MyPage from "./Components/myPage";
+import CreateForm from "./Components/createuser";
+import LoginForm from "./Components/loginUser";
 // import './index.css';
 import App from "./App";
 // import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
-  // { path: "createProposal", element: <CreateProposal /> },
-  // { path: "voteProposal/:id", element: <VoteProposal /> },
+  { path: "users/createUser", element: <CreateForm /> },
+  { path: "users/login", element: <LoginForm /> },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

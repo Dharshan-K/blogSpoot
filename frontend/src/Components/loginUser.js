@@ -1,26 +1,35 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+/** @format */
 
+import React, { useState } from "react";
+import axios from "axios";
 
-export default function LoginForm(){
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export default function LoginForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here, such as sending data to the server
-    console.log('Email:', email);
-    console.log('Password:', password);
+    console.log("Email:", email);
+    console.log("Password:", password);
 
-    const data = {email:email,password:password}
+    const data = { email: email, password: password };
 
-    axios.post("http://localhost:5000/users/login",data).then(response=>{
-      console.log("response", response)
-    })
+    axios
+      .post("http://localhost:5000/users/login", data)
+      .then((response) => {
+        console.log("response", response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    localStorage.setItem("author", name);
+    console.log(localStorage.getItem("author"));
 
     // Reset form fields
-    setEmail('');
-    setPassword('');
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -47,6 +56,4 @@ export default function LoginForm(){
       <button type="submit">Login</button>
     </form>
   );
-};
-
-
+}

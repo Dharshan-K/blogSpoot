@@ -1,28 +1,32 @@
-import {useState} from "react";
+/** @format */
+
+import { useState } from "react";
 import axios from "axios";
 
-export default function CreateForm(){
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export default function CreateForm() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = {name:name,email:email,password:password}
-    
-    // console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
+    const data = { name: name, email: email, password: password };
 
-    axios.post("http://localhost:5000/users/createUser",data).then(response=>{
-      console.log("response", response)
-    })
+    // console.log('Name:', name);
+    console.log("Email:", email);
+    console.log("Password:", password);
+
+    axios
+      .post("http://localhost:5000/users/createUser", data)
+      .then((response) => {
+        console.log("response", response);
+      });
 
     // Reset form fields
-    setName('');
-    setEmail('');
-    setPassword('');
+    setName("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -58,5 +62,4 @@ export default function CreateForm(){
       <button type="submit">Create Account</button>
     </form>
   );
-};
-
+}

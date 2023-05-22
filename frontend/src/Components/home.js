@@ -25,9 +25,17 @@ export default function Home() {
 
   return (
     <div>
-      {data.map((blog) => (
-        <Blog title={blog.title} author={blog.author} content={blog.content} />
-      ))}
+      <a>My Blogs</a>
+      <div>
+        {data.map((blog) => (
+          <Blog
+            key={blog._id}
+            title={blog.title}
+            author={blog.author}
+            content={blog.content}
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -17,7 +17,8 @@ function createUniqueId() {
 const getAllBlog = async (req, res) => {
   console.log("get all blog");
   const blog = await Blog.find();
-  res.status(400).send(blog);
+  console.log(blog);
+  res.status(200).send(blog);
 };
 
 //api Route: http://localhost:3000/blog/Dharshan/12
@@ -26,13 +27,11 @@ const getAllBlog = async (req, res) => {
 const getBlog = async (req, res) => {
   const blog = await Blog.find({ author: req.params.user, id: req.params.id });
   console.log(blog[0]);
-  res
-    .status(200)
-    .json({
-      title: blog[0].title,
-      author: blog[0].author,
-      content: blog[0].content,
-    });
+  res.status(200).json({
+    title: blog[0].title,
+    author: blog[0].author,
+    content: blog[0].content,
+  });
 };
 
 //api Route: http://localhost:3000/blog/Dharshan

@@ -1,13 +1,11 @@
-import CreateForm from "./Components/createuser.js";
-import LoginForm from "./Components/loginUser.js"
+/** @format */
+
 import Home from "./Components/home.js";
 
 function App() {
   return (
     <div>
-    <CreateForm/>
-    <LoginForm/>
-    <Home/>
+      <Home />
     </div>
   );
 }
