@@ -4,15 +4,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Blog from "./blog";
 
-export default function MyPage() {
+export default function MyPage({ author }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async (author) => {
+    const fetchData = async () => {
+      const user = author;
       try {
-        const response = await axios.get(
-          "http://localhost:5000/blog/${author}"
-        );
+        const response = await axios.get("http://localhost:5000/blog/${user}");
         const blogData = response.data;
         setData(blogData);
       } catch (error) {

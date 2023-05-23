@@ -3,9 +3,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Blog from "./blog";
+import MyPage from "./myPage";
 
 export default function Home() {
   const [data, setData] = useState([]);
+  const author = localStorage.getItem("author");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +28,11 @@ export default function Home() {
   return (
     <div>
       <a>My Blogs</a>
+      <h1>{localStorage.getItem("name")}</h1>
+      <div>
+        <MyPage author={author} />
+        hi
+      </div>
       <div>
         {data.map((blog) => (
           <Blog

@@ -8,12 +8,15 @@ import CreateForm from "./Components/createuser";
 import LoginForm from "./Components/loginUser";
 // import './index.css';
 import App from "./App";
+import Home from "./Components/home";
 // import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
   { path: "users/createUser", element: <CreateForm /> },
   { path: "users/login", element: <LoginForm /> },
+  { path: "home", element: <Home /> },
+  { path: "posts/:author", element: <MyPage /> },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -18,7 +18,7 @@ export default function CreateForm() {
     console.log("Password:", password);
 
     axios
-      .post("http://localhost:5000/users/createUser", data)
+      .post("http://localhost:5000/user/createUser", data)
       .then((response) => {
         console.log("response", response);
       });

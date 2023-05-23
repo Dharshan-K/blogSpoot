@@ -2,58 +2,98 @@
 
 import React, { useState } from "react";
 import axios from "axios";
+import {
+  redirect,
+  RedirectFunction,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
+import Home from "./home";
 
 export default function LoginForm() {
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here, such as sending data to the server
-    console.log("Email:", email);
-    console.log("Password:", password);
-
-    const data = { email: email, password: password };
+    const data = { name: name, password: password };
 
     axios
-      .post("http://localhost:5000/users/login", data)
+      .post("http://localhost:5000/user/login", data)
       .then((response) => {
         console.log("response", response);
+        localStorage.setItem("name", name);
+        console.log("name", localStorage.getItem("name"));
+        navigate("/home", { replace: true });
       })
       .catch((err) => {
         console.log(err);
       });
 
-    localStorage.setItem("author", name);
-    console.log(localStorage.getItem("author"));
+    // localStorage.setItem("email", email);
+    // console.log(localStorage.getItem("author"));
 
     // Reset form fields
-    setEmail("");
+    setName("");
     setPassword("");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button type="submit">Login</button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        <div>
+          <label htmlFor="name">name:</label>
+          <input
+            type="name"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 }
+
+// <div>
+//   {shouldRedirect ? (
+//     <Navigate to="/home" replace={true} />
+//   ) : (
+//     <div>
+//       <form onSubmit={handleSubmit}>
+//         <h2>Login</h2>
+//         <div>
+//           <label htmlFor="email">Email:</label>
+//           <input
+//             type="email"
+//             id="email"
+//             value={email}
+//             onChange={(e) => setEmail(e.target.value)}
+//           />
+//         </div>
+//         <div>
+//           <label htmlFor="password">Password:</label>
+//           <input
+//             type="password"
+//             id="password"
+//             value={password}
+//             onChange={(e) => setPassword(e.target.value)}
+//           />
+//         </div>
+//         <button type="submit">Login</button>
+//       </form>
+//     </div>
+//   )}
+// </div>;
