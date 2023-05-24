@@ -3,16 +3,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Blog from "./blog";
+import { useParams } from "react-router-dom";
 
-export default function MyPage({ author }) {
+export default function MyPage() {
   const [data, setData] = useState([]);
+  const { author } = useParams();
+  console.log("fetching user data...", author);
 
   useEffect(() => {
     const fetchData = async () => {
-      const user = author;
       try {
-        const response = await axios.get("http://localhost:5000/blog/${user}");
+        const response = await axios.get(
+          `http://localhost:5000/blog/${author}`
+        );
         const blogData = response.data;
+        console.log("blogData", blogData);
         setData(blogData);
       } catch (error) {
         console.log(error);
@@ -24,8 +29,13 @@ export default function MyPage({ author }) {
 
   return (
     <div>
-      {data.map((blog) => (
-        <Blog title={blog.title} author={blog.author} content={blog.content} />
+      {data.map((blog, index) => (
+        <Blog
+          key={index}
+          title={blog.title}
+          author={blog.author}
+          content={blog.content}
+        />
       ))}
     </div>
   );

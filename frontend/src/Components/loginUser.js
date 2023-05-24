@@ -40,26 +40,30 @@ export default function LoginForm() {
   };
 
   return (
-    <div>
+    <div className="border text-center ">
       <form onSubmit={handleSubmit}>
         <h2>Login</h2>
-        <div>
-          <label htmlFor="name">name:</label>
-          <input
-            type="name"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        <div className="">
+          <div className="mb-3">
+            <input
+              type="name"
+              id="name"
+              value={name}
+              placeholder="Name"
+              className=""
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="password"
+              id="password"
+              value={password}
+              placeholder="Password"
+              className=""
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
         </div>
         <button type="submit">Login</button>
       </form>

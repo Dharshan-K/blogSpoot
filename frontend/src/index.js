@@ -6,8 +6,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MyPage from "./Components/myPage";
 import CreateForm from "./Components/createuser";
 import LoginForm from "./Components/loginUser";
-// import './index.css';
-import App from "./App";
+import "bootstrap/dist/css/bootstrap.css";
+
+// import "../index.css";
+import App from "./Components/App";
 import Home from "./Components/home";
 // import reportWebVitals from './reportWebVitals';
 

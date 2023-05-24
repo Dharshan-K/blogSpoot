@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Blog from "./blog";
-import MyPage from "./myPage";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -27,12 +26,8 @@ export default function Home() {
 
   return (
     <div>
-      <a>My Blogs</a>
+      <div className="underline font-bold">My Blogs</div>
       <h1>{localStorage.getItem("name")}</h1>
-      <div>
-        <MyPage author={author} />
-        hi
-      </div>
       <div>
         {data.map((blog) => (
           <Blog
