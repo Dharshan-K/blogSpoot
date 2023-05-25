@@ -2,13 +2,8 @@
 
 import React, { useState } from "react";
 import axios from "axios";
-import {
-  redirect,
-  RedirectFunction,
-  Navigate,
-  useNavigate,
-} from "react-router-dom";
-import Home from "./home";
+import { useNavigate } from "react-router-dom";
+import "../assets/login.css";
 
 export default function LoginForm() {
   const [name, setName] = useState("");
@@ -31,20 +26,16 @@ export default function LoginForm() {
         console.log(err);
       });
 
-    // localStorage.setItem("email", email);
-    // console.log(localStorage.getItem("author"));
-
-    // Reset form fields
     setName("");
     setPassword("");
   };
 
   return (
-    <div className="border text-center ">
+    <div className="text-center login">
       <form onSubmit={handleSubmit}>
         <h2>Login</h2>
         <div className="">
-          <div className="mb-3">
+          <div className="mb-4 mt-3">
             <input
               type="name"
               id="name"
@@ -54,7 +45,7 @@ export default function LoginForm() {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="mb-3">
+          <div className="mb-4">
             <input
               type="password"
               id="password"
@@ -65,7 +56,9 @@ export default function LoginForm() {
             />
           </div>
         </div>
-        <button type="submit">Login</button>
+        <button className="btn btn-dark" type="submit">
+          Login
+        </button>
       </form>
     </div>
   );

@@ -11,6 +11,7 @@ import "bootstrap/dist/css/bootstrap.css";
 // import "../index.css";
 import App from "./Components/App";
 import Home from "./Components/home";
+import MyComponent from "./Components/blogEditor";
 // import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
   { path: "users/login", element: <LoginForm /> },
   { path: "home", element: <Home /> },
   { path: "posts/:author", element: <MyPage /> },
+  { path: "posts/edit", element: <MyComponent /> },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

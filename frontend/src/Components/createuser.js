@@ -2,11 +2,15 @@
 
 import { useState } from "react";
 import axios from "axios";
+// import "../assets/login.css";
 
 export default function CreateForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const divStyle = {
+    marginTop: "25vh",
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,36 +34,43 @@ export default function CreateForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Create Account</h2>
-      <div>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button type="submit">Create Account</button>
-    </form>
+    <div className="text-center" style={divStyle}>
+      <form onSubmit={handleSubmit}>
+        <h2>Create Account</h2>
+        <div>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            placeholder="Name"
+            className=" mt-3"
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            placeholder="Email"
+            className="mb-4 mt-4"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            placeholder="Password"
+            className="mb-4"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button className="btn btn-dark" type="submit">
+          Create Account
+        </button>
+      </form>
+    </div>
   );
 }
