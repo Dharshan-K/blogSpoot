@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Blog from "./blog";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -30,12 +31,15 @@ export default function Home() {
       <h1>{localStorage.getItem("name")}</h1>
       <div>
         {data.map((blog) => (
-          <Blog
-            key={blog._id}
-            title={blog.title}
-            author={blog.author}
-            content={blog.content}
-          />
+          <Link>
+            <Blog
+              key={blog._id}
+              title={blog.title}
+              author={blog.author}
+              content={blog.content}
+              id={blog.id}
+            />
+          </Link>
         ))}
       </div>
     </div>
