@@ -21,24 +21,25 @@ const getAllBlog = async (req, res) => {
   res.status(200).send(blog);
 };
 
-//api Route: http://localhost:3000/blog/Dharshan/12
+//api Route: http://localhost:3000/blog/user/12
 //returns the blog of a user with ID
 //tested
 const getBlog = async (req, res) => {
-  const blog = await Blog.find({ author: req.params.user, id: req.params.id });
+  const blog = await Blog.find({ id: req.params.id });
+  console.log(req.params.id);
+  console.log("getting the blog with ID");
   console.log(blog[0]);
-  res.status(200).json({
-    title: blog[0].title,
-    author: blog[0].author,
-    content: blog[0].content,
-  });
+  res.status(200).send(blog[0]);
 };
 
 //api Route: http://localhost:3000/blog/Dharshan
 //query all the blogs of a particular user
 //tested
 const getUserBlog = async (req, res) => {
+  console.log("getting user blog");
+  console.log(req.params);
   const blog = await Blog.find({ author: req.params.user });
+  console.log(blog);
   res.status(200).send(blog);
 };
 

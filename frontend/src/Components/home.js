@@ -31,7 +31,7 @@ export default function Home() {
       <h1>{localStorage.getItem("name")}</h1>
       <div>
         {data.map((blog) => (
-          <Link>
+          <Link to={`post/${blog.id}`}>
             <Blog
               key={blog._id}
               title={blog.title}
@@ -39,6 +39,7 @@ export default function Home() {
               content={blog.content}
               id={blog.id}
             />
+            <h1>{blog.id}</h1>
           </Link>
         ))}
       </div>

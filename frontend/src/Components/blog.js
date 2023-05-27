@@ -6,6 +6,7 @@ const Blog = ({ title, author, content, id }) => {
       <h2>{title}</h2>
       <p>By {author}</p>
       <p className="text-primary">{content.slice(0, 100)}</p>
+      <p>{id}</p>
       <div>
         <button className="btn btn-dark">Edit</button>
       </div>

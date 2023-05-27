@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import App from "./Components/App";
 import Home from "./Components/home";
 import MyComponent from "./Components/blogEditor";
+import GetBlog from "./Components/GetBlog";
 // import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
   { path: "home", element: <Home /> },
   { path: "posts/:author", element: <MyPage /> },
   { path: "posts/edit", element: <MyComponent /> },
+  { path: "post/:id", element: <GetBlog /> },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
