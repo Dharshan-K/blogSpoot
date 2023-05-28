@@ -27,8 +27,6 @@ export default function Home() {
 
   return (
     <div>
-      <div className="underline font-bold">My Blogs</div>
-      <h1>{localStorage.getItem("name")}</h1>
       <div>
         {data.map((blog) => (
           <Link to={`post/${blog.id}`}>

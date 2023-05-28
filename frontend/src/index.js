@@ -7,12 +7,14 @@ import MyPage from "./Components/myPage";
 import CreateForm from "./Components/createuser";
 import LoginForm from "./Components/loginUser";
 import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 // import "../index.css";
 import App from "./Components/App";
 import Home from "./Components/home";
 import MyComponent from "./Components/blogEditor";
 import GetBlog from "./Components/GetBlog";
+import OffCanvas from "./Components/offCanvas";
 // import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([
@@ -23,6 +25,7 @@ const router = createBrowserRouter([
   { path: "posts/:author", element: <MyPage /> },
   { path: "posts/edit", element: <MyComponent /> },
   { path: "post/:id", element: <GetBlog /> },
+  { path: "offcanvas", element: <OffCanvas /> },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
