@@ -79,4 +79,21 @@ const deleteBlog = async (req, res) => {
   }
 };
 
-module.exports = { getAllBlog, getBlog, getUserBlog, postBlog, deleteBlog };
+//api Route: http://localhost:3000/blog/Dharshan/12
+//delete request to delete the blog
+//tested
+const updatePost = async (req, res) => {
+  const data = req.body.data;
+  console.log(data);
+  await Blog.findOneAndUpdate({ id: data.id }, { content: data.content });
+  res.status(200).json({ message: "successfully updated" });
+};
+
+module.exports = {
+  getAllBlog,
+  getBlog,
+  getUserBlog,
+  postBlog,
+  deleteBlog,
+  updatePost,
+};
