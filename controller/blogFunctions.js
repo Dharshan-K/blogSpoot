@@ -17,7 +17,6 @@ function createUniqueId() {
 const getAllBlog = async (req, res) => {
   console.log("get all blog");
   const blog = await Blog.find();
-  console.log(blog);
   res.status(200).send(blog);
 };
 

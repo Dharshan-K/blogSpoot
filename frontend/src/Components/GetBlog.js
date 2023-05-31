@@ -19,7 +19,6 @@ export default function GetBlog() {
       );
 
       setBlogData(blogInfo.data);
-      console.log(blogInfo.data);
     };
 
     getBlog();
