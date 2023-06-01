@@ -7,7 +7,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useParams } from "react-router-dom";
 
-export default function MyComponent() {
+export default function MyComponent({ edit }) {
   const [value, setValue] = useState("");
   const [blogData, setBlogData] = useState({});
   const blogId = useParams();
@@ -27,40 +27,49 @@ export default function MyComponent() {
     ],
   };
 
-  // const getBlog = async () => {
-  //   console.log(blogId.id);
-  //   const blogInfo = await axios.get(
-  //     `http://localhost:5000/blog/user/${blogId.id}`
-  //   );
-
-  //   setBlogData(blogInfo.data);
-  //   setValue(blogData.content);
-  //   console.log(blogData.content);
-  // };
-
   useEffect(() => {
     const getBlog = async () => {
-      console.log("blogId", blogId.id);
-      console.log("getting data.....");
       const blogInfo = await axios.get(
         `http://localhost:5000/blog/user/${blogId.id}`
       );
-      console.log("blogInfo", blogInfo.data);
+      // console.log("blogInfo", blogInfo.data);
       setBlogData(blogInfo.data);
       setValue(blogInfo.data.content);
-      console.log("value", value);
-      console.log("blogData", blogInfo.data.content);
+
+      // console.log("value", value);
+      // console.log("blogData", blogInfo.data.content);
     };
 
     getBlog();
   }, []);
   const updatePost = async () => {
-    // const data = {
-    //   id: id,
-    //   content: value,
-    // };
+    const data = {
+      id: blogId.id,
+      content: value,
+    };
+    console.log(data);
+    const blog = await axios
+      .patch(`http://localhost:5000/blog/update/${blogId.id}`, data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const createPost = async () => {
+    const postTitle = document.getElementById("title");
+    const postContent = value;
+
+    const postData = {
+      title: document.getElementById("title"),
+      author: localStorage.getItem("name"),
+      content: value,
+    };
+    console.log(postData);
     // const blog = await axios
-    //   .patch(`http://localhost:5000/blog/post/${id}`, data)
+    //   .patch(`http://localhost:5000/blog/posts`, data)
     //   .then((response) => {
     //     console.log(response);
     //   })
@@ -69,8 +78,6 @@ export default function MyComponent() {
     //   });
   };
 
-  const createPost = () => {};
-
   const handleChange = (editedContent) => {
     setValue(editedContent);
     console.log("editedContent", editedContent);
@@ -78,15 +85,39 @@ export default function MyComponent() {
 
   return (
     <div>
-      <ReactQuill
-        value={value}
-        modules={modules}
-        theme="snow"
-        onChange={handleChange}
-      />
-      <div>
-        <button className="btn btn-primary">Finish</button>
-      </div>
+      {edit ? (
+        <div>
+          <ReactQuill
+            value={value}
+            modules={modules}
+            theme="snow"
+            onChange={handleChange}
+          />
+          <div>
+            <button className="btn btn-primary" onClick={updatePost}>
+              Finish
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <label htmlFor="title">Title:</label>
+          <input type="text" id="title" />
+          <div>
+            <ReactQuill
+              value={value}
+              modules={modules}
+              theme="snow"
+              onChange={handleChange}
+            />
+            <div>
+              <button className="btn btn-primary" onClick={createPost}>
+                Post
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -28,16 +28,20 @@ export default function Home() {
     <div>
       <div>
         {data.map((blog) => (
-          <Link to={`post/${blog.id}`}>
-            <Blog
-              key={blog._id}
-              title={blog.title}
-              author={blog.author}
-              content={blog.content}
-              id={blog.id}
-            />
+          <div>
+            <div>
+              <Link to={`post/${blog.id}`}>
+                <Blog
+                  key={blog._id}
+                  title={blog.title}
+                  author={blog.author}
+                  content={blog.content}
+                  id={blog.id}
+                />
+              </Link>
+            </div>
             <h1>{blog.id}</h1>
-          </Link>
+          </div>
         ))}
       </div>
     </div>

@@ -16,6 +16,8 @@ import MyComponent from "./Components/blogEditor";
 import GetBlog from "./Components/GetBlog";
 import OffCanvas from "./Components/offCanvas";
 // import reportWebVitals from './reportWebVitals';
+const forEdit = true;
+const forCreate = false;
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
@@ -23,7 +25,8 @@ const router = createBrowserRouter([
   { path: "users/login", element: <LoginForm /> },
   { path: "home", element: <Home /> },
   { path: "posts/:author", element: <MyPage /> },
-  { path: "posts/edit/:id", element: <MyComponent /> },
+  { path: "posts/edit/:id", element: <MyComponent edit={forEdit} /> },
+  { path: "posts/create", element: <MyComponent edit={forCreate} /> },
   { path: "post/:id", element: <GetBlog /> },
   { path: "offcanvas", element: <OffCanvas /> },
 ]);
