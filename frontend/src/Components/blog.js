@@ -7,7 +7,8 @@ const Blog = ({ title, author, content, id }) => {
     <div className="blog font-bold mt-3 border rounded border-dark-subtle p-2 mx-3">
       <h2>{title}</h2>
       <p>By {author}</p>
-      <p className="text-primary">{content.slice(0, 100)}</p>
+
+      <div dangerouslySetInnerHTML={{ __html: content }}></div>
       <p>{id}</p>
       <div>
         <Link to={`posts/edit/${id}`}>

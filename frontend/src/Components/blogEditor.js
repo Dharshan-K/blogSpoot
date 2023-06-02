@@ -8,9 +8,12 @@ import "react-quill/dist/quill.snow.css";
 import { useParams } from "react-router-dom";
 
 export default function MyComponent({ edit }) {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState("Compose your blog......");
+  const [finalValue, setFinalValue] = useState("");
+  const [content, setContent] = useState("hello");
   const [blogData, setBlogData] = useState({});
   const blogId = useParams();
+  var text;
 
   const modules = {
     toolbar: [
@@ -60,27 +63,32 @@ export default function MyComponent({ edit }) {
 
   const createPost = async () => {
     const postTitle = document.getElementById("title");
-    const postContent = value;
+    // const postContent = value;
 
     const postData = {
-      title: document.getElementById("title"),
+      title: postTitle.value,
       author: localStorage.getItem("name"),
       content: value,
     };
     console.log(postData);
-    // const blog = await axios
-    //   .patch(`http://localhost:5000/blog/posts`, data)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+
+    const blog = await axios
+      .post(`http://localhost:5000/blog/posts`, postData)
+      .then((response) => {
+        console.log("response", response);
+        console.log("post created");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleChange = (editedContent) => {
+    // text = editor.getText(content);
+    // console.log("value", value);
+    // console.log("text", text);
+    console.log(editedContent);
     setValue(editedContent);
-    console.log("editedContent", editedContent);
   };
 
   return (
@@ -109,11 +117,19 @@ export default function MyComponent({ edit }) {
               modules={modules}
               theme="snow"
               onChange={handleChange}
+              placeholder="Compose your blog......"
             />
+            {/* <div id="blog" dangerouslySetInnerHTML={{ __html: value }}></div> */}
             <div>
-              <button className="btn btn-primary" onClick={createPost}>
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  createPost();
+                }}
+              >
                 Post
               </button>
+              <div>text{text}</div>
             </div>
           </div>
         </div>

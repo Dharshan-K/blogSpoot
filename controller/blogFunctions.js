@@ -25,9 +25,7 @@ const getAllBlog = async (req, res) => {
 //tested
 const getBlog = async (req, res) => {
   const blog = await Blog.find({ id: req.params.id });
-  console.log(req.params.id);
   console.log("getting the blog with ID");
-  console.log(blog[0]);
   res.status(200).send(blog[0]);
 };
 
@@ -38,7 +36,6 @@ const getUserBlog = async (req, res) => {
   console.log("getting user blog");
   console.log(req.params);
   const blog = await Blog.find({ author: req.params.user });
-  console.log(blog);
   res.status(200).send(blog);
 };
 
@@ -68,8 +65,6 @@ const postBlog = async (req, res) => {
 const deleteBlog = async (req, res) => {
   const id = req.params.id;
   const blog = await Blog.findOne({ id: req.params.id });
-  console.log(blog);
-  // res.status(200).json({message:"posts found"})
   if (!blog) {
     res.status(401).json({ message: "blog post not found" });
   } else {
@@ -82,8 +77,8 @@ const deleteBlog = async (req, res) => {
 //delete request to delete the blog
 //tested
 const updatePost = async (req, res) => {
-  const data = req.body.data;
-  console.log(data);
+  const data = req.body;
+  console.log(data.id);
   await Blog.findOneAndUpdate({ id: data.id }, { content: data.content });
   res.status(200).json({ message: "successfully updated" });
 };
