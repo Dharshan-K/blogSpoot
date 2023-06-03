@@ -15,7 +15,7 @@ export default function LoginForm() {
     const data = { name: name, password: password };
 
     axios
-      .post("http://localhost:5000/user/login", data)
+      .post("http://blogspot-backend.vercel.app/user/login", data)
       .then((response) => {
         console.log("response", response);
         localStorage.setItem("name", name);
@@ -63,34 +63,3 @@ export default function LoginForm() {
     </div>
   );
 }
-
-// <div>
-//   {shouldRedirect ? (
-//     <Navigate to="/home" replace={true} />
-//   ) : (
-//     <div>
-//       <form onSubmit={handleSubmit}>
-//         <h2>Login</h2>
-//         <div>
-//           <label htmlFor="email">Email:</label>
-//           <input
-//             type="email"
-//             id="email"
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//           />
-//         </div>
-//         <div>
-//           <label htmlFor="password">Password:</label>
-//           <input
-//             type="password"
-//             id="password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//           />
-//         </div>
-//         <button type="submit">Login</button>
-//       </form>
-//     </div>
-//   )}
-// </div>;

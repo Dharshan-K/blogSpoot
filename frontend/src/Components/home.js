@@ -13,7 +13,9 @@ export default function Home() {
     const fetchData = async () => {
       try {
         console.log("hi");
-        const response = await axios.get("http://localhost:5000/blog/");
+        const response = await axios.get(
+          "http://blogspot-backend.vercel.app/blog/"
+        );
         const blogData = response.data;
         setData(blogData);
       } catch (error) {

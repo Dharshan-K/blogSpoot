@@ -33,7 +33,7 @@ export default function MyComponent({ edit }) {
   useEffect(() => {
     const getBlog = async () => {
       const blogInfo = await axios.get(
-        `http://localhost:5000/blog/user/${blogId.id}`
+        `http://blogspot-backend.vercel.app/blog/user/${blogId.id}`
       );
       // console.log("blogInfo", blogInfo.data);
       setBlogData(blogInfo.data);
@@ -52,7 +52,10 @@ export default function MyComponent({ edit }) {
     };
     console.log(data);
     const blog = await axios
-      .patch(`http://localhost:5000/blog/update/${blogId.id}`, data)
+      .patch(
+        `http://blogspot-backend.vercel.app/blog/update/${blogId.id}`,
+        data
+      )
       .then((response) => {
         console.log(response);
       })
@@ -73,7 +76,7 @@ export default function MyComponent({ edit }) {
     console.log(postData);
 
     const blog = await axios
-      .post(`http://localhost:5000/blog/posts`, postData)
+      .post(`http://blogspot-backend.vercel.app/blog/posts`, postData)
       .then((response) => {
         console.log("response", response);
         console.log("post created");
