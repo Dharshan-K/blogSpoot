@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Blog from "./blog";
-import { useParams } from "react-router-dom";
+
+import { Link, useParams } from "react-router-dom";
 
 export default function MyPage() {
   const [data, setData] = useState([]);
@@ -30,12 +31,14 @@ export default function MyPage() {
   return (
     <div>
       {data.map((blog, index) => (
-        <Blog
-          key={index}
-          title={blog.title}
-          author={blog.author}
-          content={blog.content}
-        />
+        <Link className="text-decoration-none" to={`/post/${blog.id}`}>
+          <Blog
+            key={index}
+            title={blog.title}
+            author={blog.author}
+            content={blog.content}
+          />
+        </Link>
       ))}
     </div>
   );

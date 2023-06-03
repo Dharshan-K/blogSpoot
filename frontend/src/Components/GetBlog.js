@@ -25,8 +25,12 @@ export default function GetBlog() {
   }, []);
 
   return (
-    <div>
-      <p>{blogData.content}</p>
+    <div className="border border-dark-subtle px-2 mx-2 my-3">
+      <div className="my-2 d-flex justify-content-center fs-1 fw-bolder">
+        {blogData.title}
+      </div>
+      <div dangerouslySetInnerHTML={{ __html: blogData.content }}></div>
+      <div className="my-3 fw-bolder">By {blogData.author}</div>
     </div>
   );
 }

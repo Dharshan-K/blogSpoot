@@ -9,15 +9,7 @@ import OffCanvas from "./offCanvas.js";
 function App() {
   return (
     <div className="row">
-      {/* <OffCanvas className="col" /> */}
-      <Link className="col" to={`posts/${localStorage.getItem("name")}`}>
-        My page
-      </Link>
-      <div>
-        <Link to="posts/create">
-          <button className="btn btn-primary">Create Post</button>
-        </Link>
-      </div>
+      <OffCanvas className="col" />
       <Home className="col" />
     </div>
   );

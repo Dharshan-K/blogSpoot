@@ -30,7 +30,7 @@ export default function Home() {
         {data.map((blog) => (
           <div>
             <div>
-              <Link to={`post/${blog.id}`}>
+              <Link className="text-decoration-none" to={`post/${blog.id}`}>
                 <Blog
                   key={blog._id}
                   title={blog.title}
@@ -40,7 +40,6 @@ export default function Home() {
                 />
               </Link>
             </div>
-            <h1>{blog.id}</h1>
           </div>
         ))}
       </div>
