@@ -12,16 +12,16 @@ var corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-app.use(cors());
-// app.use((req, res, next) => {
-//   res.setHeader(
-//     "Access-Control-Allow-Origin",
-//     "https://blogspot-frontend-dual.onrender.com"
-//   );
-//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-//   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-//   next();
-// });
+// app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://blogspot-frontend-dual.onrender.com"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 connectDB();
 
 app.use("/blog", require("./routers/blogRoutes"));
-app.use("/user", cors(corsOptions), require("./routers/userRoutes"));
+app.use("/user", require("./routers/userRoutes"));
 
 if (process.env.NODE_ENV === "production") {
   //*Set static folder
