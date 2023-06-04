@@ -15,7 +15,7 @@ export default function MyPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://blogspot-backend.vercel.app/blog/${author}`
+          `http://blogspot-5ln6.onrender/blog/${author}`
         );
         const blogData = response.data;
         console.log("blogData", blogData);

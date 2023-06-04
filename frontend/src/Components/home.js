@@ -13,9 +13,7 @@ export default function Home() {
     const fetchData = async () => {
       try {
         console.log("hi");
-        const response = await axios.get(
-          "http://blogspot-backend.vercel.app/blog/"
-        );
+        const response = await axios.get("http://blogspot-5ln6.onrender/blog/");
         const blogData = response.data;
         setData(blogData);
       } catch (error) {

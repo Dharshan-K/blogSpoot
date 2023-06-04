@@ -22,7 +22,7 @@ export default function CreateForm() {
     console.log("Password:", password);
 
     axios
-      .post("http://blogspot-backend.vercel.app/user/createUser", data)
+      .post("http://blogspot-5ln6.onrender/user/createUser", data)
       .then((response) => {
         console.log("response", response);
       });

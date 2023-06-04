@@ -15,7 +15,7 @@ export default function GetBlog() {
   useEffect(() => {
     const getBlog = async () => {
       const blogInfo = await axios.get(
-        `http://blogspot-backend.vercel.app/blog/user/${blogID.id}`
+        `http://blogspot-5ln6.onrender/blog/user/${blogID.id}`
       );
 
       setBlogData(blogInfo.data);
