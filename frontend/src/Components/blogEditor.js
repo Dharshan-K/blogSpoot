@@ -8,7 +8,7 @@ import "react-quill/dist/quill.snow.css";
 import { useParams } from "react-router-dom";
 
 export default function MyComponent({ edit }) {
-  const [value, setValue] = useState("Compose your blog......");
+  const [value, setValue] = useState("");
   const [finalValue, setFinalValue] = useState("");
   const [content, setContent] = useState("hello");
   const [blogData, setBlogData] = useState({});
