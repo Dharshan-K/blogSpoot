@@ -14,7 +14,7 @@ export default function Home() {
       try {
         console.log("hi");
         const response = await axios.get(
-          "https://blogspot-5ln6.onrender/blog/"
+          "https://blogspot-5ln6.onrender.com/blog/"
         );
         const blogData = response.data;
         setData(blogData);

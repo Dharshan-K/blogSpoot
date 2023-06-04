@@ -15,7 +15,7 @@ export default function GetBlog() {
   useEffect(() => {
     const getBlog = async () => {
       const blogInfo = await axios.get(
-        `https://blogspot-5ln6.onrender/blog/user/${blogID.id}`
+        `https://blogspot-5ln6.onrender.com/blog/user/${blogID.id}`
       );
 
       setBlogData(blogInfo.data);

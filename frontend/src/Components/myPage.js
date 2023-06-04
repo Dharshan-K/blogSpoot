@@ -15,7 +15,7 @@ export default function MyPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://blogspot-5ln6.onrender/blog/${author}`
+          `https://blogspot-5ln6.onrender.com/blog/${author}`
         );
         const blogData = response.data;
         console.log("blogData", blogData);

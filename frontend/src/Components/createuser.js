@@ -22,7 +22,7 @@ export default function CreateForm() {
     console.log("Password:", password);
 
     axios
-      .post("https://blogspot-5ln6.onrender/user/createUser", data)
+      .post("https://blogspot-5ln6.onrender.com/user/createUser", data)
       .then((response) => {
         console.log("response", response);
       });

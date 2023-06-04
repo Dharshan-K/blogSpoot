@@ -15,7 +15,7 @@ export default function LoginForm() {
     const data = { name: name, password: password };
 
     axios
-      .post("https://blogspot-5ln6.onrender/user/login", data)
+      .post("https://blogspot-5ln6.onrender.com/user/login", data)
       .then((response) => {
         console.log("response", response);
         localStorage.setItem("name", name);
