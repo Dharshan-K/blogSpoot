@@ -8,7 +8,7 @@ const path = require("path");
 require("dotenv").config();
 
 console.log("before cors");
-app.use(cors());
+// app.use(cors());
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
