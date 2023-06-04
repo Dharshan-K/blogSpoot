@@ -6,6 +6,10 @@ const cors = require("cors");
 const connectDB = require("./db.js");
 const path = require("path");
 require("dotenv").config();
+
+console.log("before cors");
+app.use(cors());
+console.log("after cors");
 app.use(function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -17,8 +21,7 @@ app.use(function (req, res) {
     "x-access-token, Origin, X-Requested-With, Content-Type, Accept"
   );
 });
-
-app.use(cors());
+console.log("after headers");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
